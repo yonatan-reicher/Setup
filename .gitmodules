@@ -1,0 +1,6 @@
+[submodule "web-app"]
+	path = web-app
+	url = https://github.com/TekClinic/TekClinic-Web-App.git
+[submodule "api-gateway"]
+	path = api-gateway
+	url = https://github.com/TekClinic/API-Gateway.git
