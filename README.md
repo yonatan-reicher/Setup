@@ -39,3 +39,6 @@ Public client for Web App that runs on `http://tekclinic.org` is also predefined
 
 ### API Gateway
 API Gateway can be accessed on `http://api.tekclinic.org`.
+
+### Database
+Database can ba accessed on `localhost:5432`
