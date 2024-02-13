@@ -22,8 +22,9 @@ It's needed to redirect your requests to the containers.
 Path to `hosts` file on Windows is `c:\Windows\System32\Drivers\etc\hosts`.
 
 
-3. Install docker and run the following command:
+3. Install docker and run the following commands:
 ```
+docker-compose build --no-cache
 docker compose up
 ```
 
