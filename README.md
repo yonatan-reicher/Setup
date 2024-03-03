@@ -43,3 +43,8 @@ API Gateway can be accessed on `http://api.tekclinic.org`.
 
 ### Database
 Database can ba accessed on `localhost:5432`
+When the container is created, it's set up with `db/init.sql`. If you want to save you db use the following commands:
+```
+docker compose exec db sh -c "pg_dumpall --exclude-database=root | sed 's/CREATE ROLE root;//' > init.sql"
+docker compose cp db:init.sql db/init.sql
+```
