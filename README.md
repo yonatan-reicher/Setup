@@ -1,4 +1,4 @@
-# TelClinic Bundle
+# TeKClinic Setup Bundle
 
 Docker compose configuration which setups a development network of TekClinic.
 
