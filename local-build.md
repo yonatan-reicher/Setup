@@ -1,6 +1,7 @@
 # What the script does
 The script allows to build the entire system on your local machine, while selecting only mentioned services to be built  
-from your local version, and the rest being the latest from the git rep.
+from your local version, and the rest being the latest from the git rep.  
+If needed, in order to setup the system manually see the end of this file.
 
 # How to use
 ## Requirments
@@ -23,3 +24,25 @@ To run the new compose file directly, use the following commands:
 docker-compose -f compose.yaml -f docker-compose.override.yaml build  
 docker-compose -f compose.yaml -f docker-compose.override.yaml up
 ```
+
+
+# Manual setup
+In Setup repo, open the compose file.
+For local repos, replace the image: `<some url>` tag with:
+```
+build:
+context: <local repo path relative to the compose file>
+dockerfile: Dockerfile
+```
+If trying to use local Tekclinic-WebApp repo, ensure you have valid keys and the relevant environment variables in your .env.local file.  
+Some issues may arise with the docker files trying to install git and go modules. In order to fix, change the erroneous Dockerfile parts (no need to change in files that did not raise errors).
+For git problems you will probably need to comment these line from the Doctors-Microservice Dockerfile:
+```
+RUN apk add --no-cache git ,
+ARG GITHUB_ACTOR 
+ARG GITHUB_TOKEN
+RUN git config --global url."https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
+``` 
+For go modules you will probably need to change the Doctors-Microservice Dockerfile as follows:
+comment: `RUN go mod download`
+write instead: `RUN GOPROXY="https://goproxy.io" go mod download` 
