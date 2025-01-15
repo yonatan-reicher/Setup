@@ -43,6 +43,8 @@ ARG GITHUB_ACTOR
 ARG GITHUB_TOKEN
 RUN git config --global url."https://${GITHUB_ACTOR}:${GITHUB_TOKEN}@github.com/".insteadOf "https://github.com/"
 ``` 
-For go modules you will probably need to change the Doctors-Microservice Dockerfile as follows:
-comment: `RUN go mod download`
-write instead: `RUN GOPROXY="https://goproxy.io" go mod download` 
+For go modules you will probably need to change the Doctors-Microservice Dockerfile as follows:  
+comment: `RUN go mod download`  
+write instead: `RUN GOPROXY="https://goproxy.io" go mod download`
+
+If needed see issue #42 and reopen.
