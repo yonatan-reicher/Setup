@@ -110,6 +110,26 @@ services:
         condition: service_healthy
     restart: on-failure
 
+  tasks:
+    image: ghcr.io/tekclinic/tasks-ms:latest
+    networks:
+      - back-tier
+    ports:
+      - "9093:9090"
+    environment:
+      - AUTH_ISSUER=http://auth.tekclinic.org:80/realms/tekclinic
+      - DB_ADDR=db:5432
+      - DB_USER=tasks
+      - DB_PASSWORD=tasks
+      - DB_DATABASE=tasks
+      - BUN_DEBUG=2
+    depends_on:
+      keycloak:
+        condition: service_started
+      db:
+        condition: service_healthy
+    restart: on-failure
+
   api-gateway:
     image: ghcr.io/tekclinic/api-gateway:latest
     networks:
@@ -119,6 +139,7 @@ services:
       - MS_PATIENT_HOST=patients
       - MS_APPOINTMENT_HOST=appointments
       - MS_DOCTOR_HOST=doctors
+      - MS_TASK_HOST=tasks
       - URI_SCHEME=http
       - URI_HOST=api.tekclinic.org
 
